@@ -1,7 +1,17 @@
+'use client';
+
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default function HomePage() {
+  const handleSearchClick = () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 'k',
+      metaKey: true,
+      bubbles: true,
+    });
+    document.dispatchEvent(event);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950/20">
       {/* Mesh gradient background */}
@@ -30,14 +40,7 @@ export default function HomePage() {
                 Get Started
               </Link>
               <button
-                onClick={() => {
-                  const event = new KeyboardEvent('keydown', {
-                    key: 'k',
-                    metaKey: true,
-                    bubbles: true,
-                  });
-                  document.dispatchEvent(event);
-                }}
+                onClick={handleSearchClick}
                 className="px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 transition-all duration-200 flex items-center gap-2"
               >
                 <svg
