@@ -18,6 +18,16 @@ export default async function DocPage({ params }: DocPageProps) {
     notFound();
   }
 
+  // Format date safely (handles both Date objects and ISO strings)
+  const formatDate = (date: Date | string) => {
+    const dateObj = typeof date === 'string' ? new Date(date) : date;
+    return dateObj.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
   return (
     <article className="animate-fade-in">
       {/* Breadcrumbs */}
@@ -58,8 +68,8 @@ export default async function DocPage({ params }: DocPageProps) {
           {document.title}
         </h1>
         <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-          <time dateTime={document.updatedAt.toString()}>
-            Updated {new Date(document.updatedAt).toLocaleDateString()}
+          <time>
+            Updated {formatDate(document.updatedAt)}
           </time>
         </div>
       </header>
